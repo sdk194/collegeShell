@@ -74,6 +74,9 @@ void cd(char ** args) {
         i += 1;
     }
     if (args[1]) {
+		char oldpwd[MAX_BUFFER];
+		getcwd(oldpwd, MAX_BUFFER + 1);
+		setenv("OLDPWD", oldpwd, 1);
         if (!chdir(query)) {  //If directory exists
             printf("Now in: %s\n", getcwd(pwd, MAX_BUFFER));    //prints out the new current directory path
             setenv("PWD", pwd, 1);  //changing pwd environment variable to new current pwd variable
